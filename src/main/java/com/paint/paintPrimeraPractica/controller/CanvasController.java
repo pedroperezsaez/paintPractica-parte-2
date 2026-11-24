@@ -75,6 +75,24 @@ public class CanvasController {
 
         return "redirect:/paint/" + id;
     }
+    @GetMapping("/paint/mis-canvas")
+    public String misCanvas(Model model, HttpSession session) {
+        int idUser = (int) session.getAttribute("idUser");
+
+        model.addAttribute("todosLosCanvasUsuario",
+                canvasService.buscarCanvasDelUsuario(idUser));
+
+        return "mis-canvas";
+    }
+
+    @GetMapping("/paint/otros-canvas")
+    public String otrosCanvas(Model model) {
+
+        model.addAttribute("todosLosCanvas",
+                canvasService.buscarTodosCanvas());
+
+        return "otros-canvas";
+    }
 
 
     @GetMapping("/paint/nuevo")

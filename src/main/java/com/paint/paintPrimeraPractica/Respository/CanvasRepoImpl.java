@@ -36,9 +36,7 @@ public class CanvasRepoImpl implements CanvasRepo {
     @Override
     public void eliminarCanvas(int id) {
         for (int i = 0; i < canvasList.size(); i++) {
-            if (canvasList.get(i).getId() == id) {
-                canvasList.remove(i);
-            }
+            canvasList.removeIf(canvas-> canvas.getId()==id);
         }
     }
 
