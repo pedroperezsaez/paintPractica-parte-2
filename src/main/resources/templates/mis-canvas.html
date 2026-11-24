@@ -11,7 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 
-<body class="pagina-paint">
+<body class="pagina-listado">
 
     <nav class="d-flex justify-content-end align-items-center gap-2" id="navegacion">
          <a
@@ -36,26 +36,23 @@
     </nav>
 
     <div class="panel" id="lista-canvas">
-        <h4 class="titulo-lista">Mis canvas</h4>
+           <h4 class="titulo-lista">Mis canvas</h4>
 
+    <div class="contenedor-canvas">
         <a class="menu-item lista-canvas d-flex flex-column"
            th:each="canva : ${todosLosCanvasUsuario}"
            th:href="@{'/paint/' + ${canva.id}}">
 
-            <span class="nombre-canvas"
-                  th:text="${canva.nombre}">Nombre canvas</span>
-
-            <span class="fecha-canvas"
-                  th:text="'Creado: ' + ${canva.fechaCreacion}">Creado</span>
-
-            <span class="fecha-canvas"
-                  th:text="'Modificado: ' + ${canva.fechaModificacion}">Modificado</span>
-        </a>
-
-        <a class="boton-nav mt-3 d-inline-block" th:href="@{/paint/nuevo}">
-            Nuevo canvas
+            <span class="nombre-canvas" th:text="${canva.nombre}">Nombre canvas</span>
+            <span class="fecha-canvas" th:text="'Creado: ' + ${canva.fechaCreacion}">Creado</span>
+            <span class="fecha-canvas" th:text="'Modificado: ' + ${canva.fechaModificacion}">Modificado</span>
         </a>
     </div>
+
+    <a class="boton-nav mt-3 d-inline-block" th:href="@{/paint/nuevo}">
+        Nuevo canvas
+    </a>
+</div>
 
 </body>
 </html>
