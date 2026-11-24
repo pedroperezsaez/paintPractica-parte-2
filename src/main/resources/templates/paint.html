@@ -29,8 +29,8 @@
          <a
     class="boton-nav activa"
     id="boton-canvas"
-    th:href="@{/paint/}">
-    <i class="bi bi-globe"></i> Canvas
+    th:href="@{/paint}">
+    <i class="bi bi-palette-fill"></i> Canvas
 </a>
       <a
     class="boton-nav "
@@ -66,9 +66,7 @@
       th:attr="data-id=${canvasSeleccionado.id}, data-nombre=${canvasSeleccionado.nombre}"
       th:if="${canvasSeleccionado != null}"></div>
 
-    <div
-      class="panel"
-      id="figuras">
+    <div class="panel" id="figuras">
       <h4>Figuras</h4>
 
       <div
