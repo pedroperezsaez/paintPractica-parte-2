@@ -2,6 +2,8 @@ package com.paint.paintPrimeraPractica.Respository;
 
 
 import com.paint.paintPrimeraPractica.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -9,19 +11,32 @@ import java.util.List;
 
 @Component
 public class UserRepoImpl implements UserRepo {
+    @Autowired
+    JdbcTemplate jdbcTemplate;
     private final List<User> users = new ArrayList<>();
 
+
     UserRepoImpl() {
-        users.add(new User("admin", "admin", 1));
-        users.add(new User("pedro", "pedro", 2));
+
 
     }
 
 
     @Override
     public User buscarUser(String username) {
-        return users.stream().filter(u -> u.getUsername().equals(username)).findFirst().orElse(null);
+        String sql = "SELECT * FROM user WHERE username = ?";
+        return jdbcTemplate.queryForObject(sql, (rs,rn) ->
+                        new User(
+                                rs.getString("username"),
+                                rs.getString("password"),
+                                rs.getInt("id")
+                        ),
+                username
+        );
     }
+
+
+
 
     @Override
     public User addUser(String username, String password, int id) {

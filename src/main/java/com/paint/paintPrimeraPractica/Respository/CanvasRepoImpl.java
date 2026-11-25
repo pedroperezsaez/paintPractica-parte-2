@@ -1,6 +1,8 @@
 package com.paint.paintPrimeraPractica.Respository;
 
 import com.paint.paintPrimeraPractica.model.Canvas;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -8,12 +10,12 @@ import java.util.List;
 
 @Repository
 public class CanvasRepoImpl implements CanvasRepo {
+    @Autowired
+    JdbcTemplate jdbcTemplate;
     private final List<Canvas> canvasList = new ArrayList<>();
 
     public CanvasRepoImpl() {
-        canvasList.add(new Canvas(1, "dibujo", 1, "", "2026-11-20 09:00", "2026-11-20 09:00"));
-        canvasList.add(new Canvas(2, "Paisaje", 1, "", "2026-11-20 10:00", "2026-11-20 10:00"));
-        canvasList.add(new Canvas(3, "Figuras", 2, "", "2026-11-20 11:00", "2026-11-20 11:00"));
+
     }
 
     @Override
