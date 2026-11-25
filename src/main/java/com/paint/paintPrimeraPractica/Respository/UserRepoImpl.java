@@ -41,12 +41,11 @@ public class UserRepoImpl implements UserRepo {
     @Override
     public User addUser(String username, String password, int id) {
 
-        User user = new User(username, password, id);
-        users.add(user);
+        String sql = "INSERT INTO user (username, password, id) VALUES (?, ?, ?)";
 
+        jdbcTemplate.update(sql, username, password, id);
 
-        return user;
-
+        return new User(username,password,id);
 
     }
 }
